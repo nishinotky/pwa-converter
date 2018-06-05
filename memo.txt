@@ -1,0 +1,15 @@
+Application Name
+Application Short Name  Used when there is insufficient space to display the full name of the application. 12 characters or less.
+Description             A brief description of what your app is about.
+Application Icon        This will be the icon of your app when installed on the phone. Must be a PNG image exactly 192x192 in size.
+Splash Screen Icon      This icon will be displayed on the splash screen of your app on supported devices. Must be a PNG image exactly 512x512 in size.
+Background Color        Background color of the splash screen.
+Theme Color             Theme color is used on supported devices to tint the UI elements of the browser and app switcher. When in doubt, use the same color as Background Color.
+Start Page              Specify the page to load when the application is launched from a device. Current start page is https://sonata.auto-range.jp
+Offline Page            Offline page is displayed when the device is offline and the requested page is not already cached. Current offline page is https://sonata.auto-range.jp
+Orientation             Set the orientation of your app on devices. When set to Follow Device Orientation your app will rotate as the device is rotated.
+
+## Status
+Manifest                Manifest generated successfully. You can see it here
+Service Worker          Service worker generated successfully.
+HTTPS                   Your website is served over HTTPS.
