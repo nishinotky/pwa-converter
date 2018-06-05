@@ -1,0 +1,184 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    // link(rel='icon', href='../../../../favicon.ico')
+    title さくっとPWA
+    // Bootstrap core CSS
+    link(href='./css/bootstrap.min.css', rel='stylesheet')
+    // Custom styles for this template
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css")
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css")
+    link(href='./css/style.css', rel='stylesheet' media="all")
+  body.bg-light
+    .container
+      .py-5.text-center
+        h1 Form Test
+      .row
+        .col-md-4.order-md-2.mb-4
+          h3.d-flex.justify-content-between.align-items-center.mb-3
+            span.text-muted Your cart
+            span.badge.badge-secondary.badge-pill 3
+          ul.list-group.mb-3
+            li.list-group-item.d-flex.justify-content-between.lh-condensed
+              div
+                h6.my-0 Product name
+                small.text-muted Brief description
+              span.text-muted $12
+            li.list-group-item.d-flex.justify-content-between.lh-condensed
+              div
+                h6.my-0 Second product
+                small.text-muted Brief description
+              span.text-muted $8
+            li.list-group-item.d-flex.justify-content-between.lh-condensed
+              div
+                h6.my-0 Third item
+                small.text-muted Brief description
+              span.text-muted $5
+            li.list-group-item.d-flex.justify-content-between.bg-light
+              .text-success
+                h6.my-0 Promo code
+                small EXAMPLECODE
+              span.text-success -$5
+            li.list-group-item.d-flex.justify-content-between
+              span Total (USD)
+              strong $20
+          form.card.p-2
+            .input-group
+              input.form-control(type='text', placeholder='Promo code')
+              .input-group-append
+                button.btn.btn-secondary(type='submit') Redeem
+        .col-md-8.order-md-1
+          h2.mb-3 Form Area
+          form
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputName') Name
+              .col-sm-8
+                input#inputName.form-control(type='text', placeholder='name')
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputSname') Short Name
+              .col-sm-8
+                input#inputSname.form-control(type='text', placeholder='short_name')
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputColor') Background Color
+              .col-sm-8
+                input#inputColor.form-control(type='text')
+
+          // pre code
+          .pre_wrap
+            pre
+              code.json
+                | {
+                |   "name"              : "PWA sample",
+                |   "short_name"        : "PWA",
+                |   "description"       : "An example website implementing Progressive Web App technology.",
+                |   "start_url"         : "/",
+                |   "display"           : "standalone",
+                |   "orientation"       : "any",
+                |   "background_color"  : "#ACE",
+                |   "theme_color"       : "#ACE",
+                |   "icons": [
+                |     {
+                |       "src"           : "/images/logo/logo072.png",
+                |       "sizes"         : "72x72",
+                |       "type"          : "image/png"
+                |     },
+                |     {
+                |       "src"           : "/images/logo/logo152.png",
+                |       "sizes"         : "152x152",
+                |       "type"          : "image/png"
+                |     },
+                |     {
+                |       "src"           : "/images/logo/logo192.png",
+                |       "sizes"         : "192x192",
+                |       "type"          : "image/png"
+                |     },
+                |     {
+                |       "src"           : "/images/logo/logo256.png",
+                |       "sizes"         : "256x256",
+                |       "type"          : "image/png"
+                |     },
+                |     {
+                |       "src"           : "/images/logo/logo512.png",
+                |       "sizes"         : "512x512",
+                |       "type"          : "image/png"
+                |     }
+                |   ]
+                | }
+            pre
+              code.js
+                | self.addEventListener('install', function(e) {
+                |   console.log('[ServiceWorker] Install');
+                | });
+                | 
+                | self.addEventListener('activate', function(e) {
+                |   console.log('[ServiceWorker] Activate');
+                | });
+                | 
+                | self.addEventListener('fetch', function(event) {});
+
+      .row
+        .col-md-12
+          h2.mb-3 NEWS
+          ul.news_wrap
+            li
+              a(href="#")
+                .date 2018年06月30日
+                .title オープンしました！
+            li
+              a(href="#")
+                .date 2018年07月01日
+                .title 早速修正いたしました。
+
+      footer.my-5.pt-5.text-muted.text-center.text-small
+        p.mb-1 © 2018 さくっとPWA
+        ul.list-inline
+          li.list-inline-item
+            a(href="//github.com/nishinotky/pwa-convertera") GitHub
+          li.list-inline-item
+            a(href='//auto-range.jp') うんえい
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='//code.jquery.com/jquery-3.3.1.slim.min.js')
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
+    script.
+      hljs.initHighlightingOnLoad();
+    script(src='./js/popper.min.js')
+    script(src='./js/bootstrap.min.js')
+    script(src='./js/holder.min.js')
+    script.
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    script(src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/i18n/jquery.spectrum-ja.min.js")
+    script.
+      jQuery(function($){
+        $("#inputColor").spectrum({
+          color: "#00ada9",
+          showInput: true,
+          chooseText: "ok!",
+          cancelText: "キャンセル",
+          preferredFormat: "hex",
+        });
+      });

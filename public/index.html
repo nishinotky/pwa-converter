@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- link(rel='icon', href='../../../../favicon.ico')-->
+    <title>さくっとPWA</title>
+    <!-- Bootstrap core CSS-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+    <link href="./css/style.css" rel="stylesheet" media="all">
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="py-5 text-center">
+        <h1>Form Test</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h3 class="d-flex justify-content-between align-items-center mb-3"><span class="text-muted">Your cart</span><span class="badge badge-secondary badge-pill">3</span></h3>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Product name</h6><small class="text-muted">Brief description</small>
+              </div><span class="text-muted">$12</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Second product</h6><small class="text-muted">Brief description</small>
+              </div><span class="text-muted">$8</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Third item</h6><small class="text-muted">Brief description</small>
+              </div><span class="text-muted">$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Promo code</h6><small>EXAMPLECODE</small>
+              </div><span class="text-success">-$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between"><span>Total (USD)</span><strong>$20</strong></li>
+          </ul>
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" placeholder="Promo code" class="form-control">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h2 class="mb-3">Form Area</h2>
+          <form>
+            <div class="form-group row">
+              <label for="inputName" class="col-sm-4 col-form-label">Name</label>
+              <div class="col-sm-8">
+                <input id="inputName" type="text" placeholder="name" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputSname" class="col-sm-4 col-form-label">Short Name</label>
+              <div class="col-sm-8">
+                <input id="inputSname" type="text" placeholder="short_name" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputColor" class="col-sm-4 col-form-label">Background Color</label>
+              <div class="col-sm-8">
+                <input id="inputColor" type="text" class="form-control">
+              </div>
+            </div>
+          </form>
+          <!-- pre code-->
+          <div class="pre_wrap">
+            <pre><code class="json">{
+  "name"              : "PWA sample",
+  "short_name"        : "PWA",
+  "description"       : "An example website implementing Progressive Web App technology.",
+  "start_url"         : "/",
+  "display"           : "standalone",
+  "orientation"       : "any",
+  "background_color"  : "#ACE",
+  "theme_color"       : "#ACE",
+  "icons": [
+    {
+      "src"           : "/images/logo/logo072.png",
+      "sizes"         : "72x72",
+      "type"          : "image/png"
+    },
+    {
+      "src"           : "/images/logo/logo152.png",
+      "sizes"         : "152x152",
+      "type"          : "image/png"
+    },
+    {
+      "src"           : "/images/logo/logo192.png",
+      "sizes"         : "192x192",
+      "type"          : "image/png"
+    },
+    {
+      "src"           : "/images/logo/logo256.png",
+      "sizes"         : "256x256",
+      "type"          : "image/png"
+    },
+    {
+      "src"           : "/images/logo/logo512.png",
+      "sizes"         : "512x512",
+      "type"          : "image/png"
+    }
+  ]
+}</code></pre>
+            <pre><code class="js">self.addEventListener('install', function(e) {
+  console.log('[ServiceWorker] Install');
+});
+ 
+self.addEventListener('activate', function(e) {
+  console.log('[ServiceWorker] Activate');
+});
+ 
+self.addEventListener('fetch', function(event) {});</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="mb-3">NEWS</h2>
+          <ul class="news_wrap">
+            <li><a href="#">
+                <div class="date">2018年06月30日</div>
+                <div class="title">オープンしました！</div></a></li>
+            <li><a href="#">
+                <div class="date">2018年07月01日</div>
+                <div class="title">早速修正いたしました。</div></a></li>
+          </ul>
+        </div>
+      </div>
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2018 さくっとPWA</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="//github.com/nishinotky/pwa-convertera">GitHub</a></li>
+          <li class="list-inline-item"><a href="//auto-range.jp">うんえい</a></li>
+        </ul>
+      </footer>
+    </div>
+    <!--
+    Bootstrap core JavaScript
+    ==================================================
+    -->
+    <!-- Placed at the end of the document so the pages load faster-->
+    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/holder.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/i18n/jquery.spectrum-ja.min.js"></script>
+    <script>
+      jQuery(function($){
+        $("#inputColor").spectrum({
+          color: "#00ada9",
+          showInput: true,
+          chooseText: "ok!",
+          cancelText: "キャンセル",
+          preferredFormat: "hex",
+        });
+      });
+    </script>
+  </body>
+</html>

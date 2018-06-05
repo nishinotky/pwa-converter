@@ -1,0 +1,72 @@
+.container {
+  max-width: 1000px;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.border-top-gray {
+  border-top-color: #adb5bd;
+}
+
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+.lh-condensed {
+  line-height: 1.25;
+}
+
+/*
+ * pre code
+ */
+.pre_wrap {
+  margin: 50px auto;
+}
+
+.hljs::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+ * spectrum adjust css
+ */
+.sp-input {
+  background: #fff;
+  border-radius: 0;
+}
+
+/*
+ * .news_wrap
+ */
+.news_wrap {
+  margin: 0 auto 50px;
+  padding: 0;
+}
+
+.news_wrap > li {
+  list-style: none;
+  margin: 0 auto 10px;
+  padding: 0;
+}
+
+.news_wrap > li > a {
+  font-size: 1rem;
+  color: #212529;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.news_wrap > li > a .date {
+  margin-right: 20px;
+}
+
+.news_wrap > li > a:hover .title {
+  text-decoration: underline;
+}

@@ -1,0 +1,18 @@
+{
+  "name": "pwa-converter",
+  "version": "1.0.0",
+  "description": "AutoRange develop pwa-converter",
+  "homepage": "https://auto-range.jp/",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-sass": "^3.1.0"
+  }
+}
