@@ -54,7 +54,7 @@
             </div>
           </form>
         </div>
-        <div class="col-md-8 order-md-1">
+        <div id="app" class="col-md-8 order-md-1">
           <h2 class="mb-3">Form Area</h2>
           <form>
             <div class="form-group row">
@@ -73,6 +73,53 @@
               <label for="inputColor" class="col-sm-4 col-form-label">Background Color</label>
               <div class="col-sm-8">
                 <input id="inputColor" type="text" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputText1" class="col-sm-4 col-form-label">Name</label>
+              <div class="col-sm-8">
+                <input id="inputText1" type="text" v-model="inputText.name" :class="errorClassObject('name')" placeholder="Input text" class="form-control">
+                <transition name="fade">
+                  <p v-if="!validation.name" class="text-danger mt-2 ml-2">{{ validation.name | emptyValidator }}</p>
+                </transition>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputText2" class="col-sm-4 col-form-label">Short name</label>
+              <div class="col-sm-8">
+                <input id="inputText2" type="text" v-model="inputText.shortName" :class="errorClassObject('shortName')" placeholder="Input text" class="form-control">
+                <transition name="fade">
+                  <p v-if="!validation.shortName" class="text-danger mt-2 ml-2">{{ validation.shortName | emptyValidator }}</p>
+                </transition>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputText3" class="col-sm-4 col-form-label">Background color</label>
+              <div class="col-sm-8">
+                <input id="inputText3" type="text" v-model="inputText.backgroundColor" :class="errorClassObject('backgroundColor')" placeholder="Input text" class="form-control">
+                <transition name="fade">
+                  <p v-if="!validation.backgroundColor" class="text-danger mt-2 ml-2">{{ validation.backgroundColor | emptyValidator }}</p>
+                </transition>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputText4" class="col-sm-4 col-form-label">Theme color</label>
+              <div class="col-sm-8">
+                <input id="inputText4" type="text" v-model="inputText.themeColor" :class="errorClassObject('themeColor')" placeholder="Input text" class="form-control">
+                <transition name="fade">
+                  <p v-if="!validation.themeColor" class="text-danger mt-2 ml-2">{{ validation.themeColor | emptyValidator }}</p>
+                </transition>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
+              <div class="col-sm-8">
+                <input id="inputPassword" type="password" placeholder="Password" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12 text-right">
+                <button type="button" :disabled="isValid == false" class="btn btn-info">だうんろーど</button>
               </div>
             </div>
           </form>
@@ -192,5 +239,7 @@ self.addEventListener('fetch', function(event) {});</code></pre>
         });
       });
     </script>
+    <script src="//cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>

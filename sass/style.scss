@@ -76,3 +76,18 @@ $breakpoint-target: (
     }
   }
 }
+/*
+ *
+ */
+.fade-enter-active {
+  transition: opacity .3s;
+}
+.fade-leave-active {
+  @extend .fade-enter-active
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave-to {
+  @extend .fade-enter
+}
