@@ -10,7 +10,6 @@
     <!-- Bootstrap core CSS-->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
     <link href="./css/style.css" rel="stylesheet" media="all">
   </head>
@@ -78,7 +77,7 @@
             <div class="form-group row">
               <label for="inputText1" class="col-sm-4 col-form-label">Name</label>
               <div class="col-sm-8">
-                <input id="inputText1" type="text" v-model="inputText.name" :class="errorClassObject('name')" placeholder="Input text" class="form-control">
+                <input id="inputText1" type="text" v-model="form.name" :class="errorClassObject('name')" placeholder="Input text" class="form-control">
                 <transition name="fade">
                   <p v-if="!validation.name" class="text-danger mt-2 ml-2">{{ validation.name | emptyValidator }}</p>
                 </transition>
@@ -87,7 +86,7 @@
             <div class="form-group row">
               <label for="inputText2" class="col-sm-4 col-form-label">Short name</label>
               <div class="col-sm-8">
-                <input id="inputText2" type="text" v-model="inputText.shortName" :class="errorClassObject('shortName')" placeholder="Input text" class="form-control">
+                <input id="inputText2" type="text" v-model="form.shortName" :class="errorClassObject('shortName')" placeholder="Input text" class="form-control">
                 <transition name="fade">
                   <p v-if="!validation.shortName" class="text-danger mt-2 ml-2">{{ validation.shortName | emptyValidator }}</p>
                 </transition>
@@ -96,7 +95,7 @@
             <div class="form-group row">
               <label for="inputText3" class="col-sm-4 col-form-label">Background color</label>
               <div class="col-sm-8">
-                <input id="inputText3" type="text" v-model="inputText.backgroundColor" :class="errorClassObject('backgroundColor')" placeholder="Input text" class="form-control">
+                <input id="inputText3" type="text" v-model="form.backgroundColor" :class="errorClassObject('backgroundColor')" placeholder="Input text" class="form-control">
                 <transition name="fade">
                   <p v-if="!validation.backgroundColor" class="text-danger mt-2 ml-2">{{ validation.backgroundColor | emptyValidator }}</p>
                 </transition>
@@ -105,7 +104,7 @@
             <div class="form-group row">
               <label for="inputText4" class="col-sm-4 col-form-label">Theme color</label>
               <div class="col-sm-8">
-                <input id="inputText4" type="text" v-model="inputText.themeColor" :class="errorClassObject('themeColor')" placeholder="Input text" class="form-control">
+                <input id="inputText4" type="text" v-model="form.themeColor" :class="errorClassObject('themeColor')" placeholder="Input text" class="form-control">
                 <transition name="fade">
                   <p v-if="!validation.themeColor" class="text-danger mt-2 ml-2">{{ validation.themeColor | emptyValidator }}</p>
                 </transition>
@@ -125,7 +124,10 @@
           </form>
           <!-- pre code-->
           <div class="pre_wrap">
-            <pre><code class="json">{
+            <h3>Your original manifest.json</h3>
+            <pre class="code code-json"><label>JSON</label><code>{{ form }}</code></pre>
+            <h3>manifest.json sample</h3>
+            <pre class="code code-json"><label>JSON</label><code>{
   "name"              : "PWA sample",
   "short_name"        : "PWA",
   "description"       : "An example website implementing Progressive Web App technology.",
@@ -162,7 +164,8 @@
     }
   ]
 }</code></pre>
-            <pre><code class="js">self.addEventListener('install', function(e) {
+            <h3>service-worker.js sample</h3>
+            <pre class="code code-javascript"><label>JS</label><code>self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
 });
  
@@ -201,8 +204,6 @@ self.addEventListener('fetch', function(event) {});</code></pre>
     -->
     <!-- Placed at the end of the document so the pages load faster-->
     <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
     <script src="./js/popper.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/holder.min.js"></script>
@@ -239,7 +240,7 @@ self.addEventListener('fetch', function(event) {});</code></pre>
         });
       });
     </script>
-    <script src="//cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/vue.min.js"></script>
     <script src="./js/script.js"></script>
   </body>
 </html>

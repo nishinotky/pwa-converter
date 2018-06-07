@@ -10,7 +10,6 @@ html(lang='ja')
     // Bootstrap core CSS
     link(href='./css/bootstrap.min.css', rel='stylesheet')
     // Custom styles for this template
-    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css")
     link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css")
     link(href='./css/style.css', rel='stylesheet' media="all")
   body.bg-light
@@ -69,25 +68,25 @@ html(lang='ja')
             .form-group.row
               label.col-sm-4.col-form-label(for='inputText1') Name
               .col-sm-8
-                input#inputText1.form-control(type='text', v-model='inputText.name', :class='errorClassObject(\'name\')', placeholder='Input text')
+                input#inputText1.form-control(type='text', v-model='form.name', :class='errorClassObject(\'name\')', placeholder='Input text')
                 transition(name='fade')
                   p.text-danger.mt-2.ml-2(v-if='!validation.name') {{ validation.name | emptyValidator }}
             .form-group.row
               label.col-sm-4.col-form-label(for='inputText2') Short name
               .col-sm-8
-                input#inputText2.form-control(type='text', v-model='inputText.shortName', :class='errorClassObject(\'shortName\')', placeholder='Input text')
+                input#inputText2.form-control(type='text', v-model='form.shortName', :class='errorClassObject(\'shortName\')', placeholder='Input text')
                 transition(name='fade')
                   p.text-danger.mt-2.ml-2(v-if='!validation.shortName') {{ validation.shortName | emptyValidator }}
             .form-group.row
               label.col-sm-4.col-form-label(for='inputText3') Background color
               .col-sm-8
-                input#inputText3.form-control(type='text', v-model='inputText.backgroundColor', :class='errorClassObject(\'backgroundColor\')', placeholder='Input text')
+                input#inputText3.form-control(type='text', v-model='form.backgroundColor', :class='errorClassObject(\'backgroundColor\')', placeholder='Input text')
                 transition(name='fade')
                   p.text-danger.mt-2.ml-2(v-if='!validation.backgroundColor') {{ validation.backgroundColor | emptyValidator }}
             .form-group.row
               label.col-sm-4.col-form-label(for='inputText4') Theme color
               .col-sm-8
-                input#inputText4.form-control(type='text', v-model='inputText.themeColor', :class='errorClassObject(\'themeColor\')', placeholder='Input text')
+                input#inputText4.form-control(type='text', v-model='form.themeColor', :class='errorClassObject(\'themeColor\')', placeholder='Input text')
                 transition(name='fade')
                   p.text-danger.mt-2.ml-2(v-if='!validation.themeColor') {{ validation.themeColor | emptyValidator }}
             .form-group.row
@@ -100,8 +99,14 @@ html(lang='ja')
 
           // pre code
           .pre_wrap
-            pre
-              code.json
+            h3 Your original manifest.json
+            pre.code.code-json <label>JSON</label>
+              code
+                {{ form }}
+                
+            h3 manifest.json sample
+            pre.code.code-json <label>JSON</label>
+              code
                 | {
                 |   "name"              : "PWA sample",
                 |   "short_name"        : "PWA",
@@ -139,8 +144,9 @@ html(lang='ja')
                 |     }
                 |   ]
                 | }
-            pre
-              code.js
+            h3 service-worker.js sample
+            pre.code.code-javascript <label>JS</label>
+              code
                 | self.addEventListener('install', function(e) {
                 |   console.log('[ServiceWorker] Install');
                 | });
@@ -176,9 +182,6 @@ html(lang='ja')
       ==================================================
     // Placed at the end of the document so the pages load faster
     script(src='//code.jquery.com/jquery-3.3.1.slim.min.js')
-    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
-    script.
-      hljs.initHighlightingOnLoad();
     script(src='./js/popper.min.js')
     script(src='./js/bootstrap.min.js')
     script(src='./js/holder.min.js')
@@ -213,5 +216,5 @@ html(lang='ja')
           preferredFormat: "hex",
         });
       });
-    script(src="//cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js")
+    script(src="./js/vue.min.js")
     script(src="./js/script.js")

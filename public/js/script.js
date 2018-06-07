@@ -8,7 +8,7 @@
     el: "#app",
 
     data: {
-      inputText: {
+      form: {
         name: '',
         shortName: '',
         backgroundColor: '',
@@ -16,14 +16,20 @@
       },
       maxLength: 12
     },
+    beforeMount: function () {
+      var validation = this.validation
+      for (key in validation) {
+        validation[key] = true
+      }
+    },
     computed: {
       validation: function () {
-        const inputText = this.inputText
+        const form = this.form
         return {
-          name: (!!inputText.name),
-          shortName: (!!inputText.shortName && inputText.shortName.length <= this.maxLength),
-          backgroundColor: (!!inputText.backgroundColor),
-          themeColor: (!!inputText.themeColor)
+          name: (!!form.name),
+          shortName: (!!form.shortName && form.shortName.length <= this.maxLength),
+          backgroundColor: (!!form.backgroundColor),
+          themeColor: (!!form.themeColor)
         }
       },
       isValid: function () {
@@ -33,7 +39,6 @@
         })
       },
     },
-
     filters: {
       emptyValidator: function (val) {
         if ( isEmpty(val) ) {
@@ -56,7 +61,18 @@
   console.log();
 
   function isEmpty(value){
-    return !value || value == '';
+    return !value;
+  }
+
+  var pres = document.querySelectorAll('pre');
+  for (var i = 0; i < pres.length; i++) {
+    pres[i].addEventListener("dblclick", function () {
+      var selection = getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(this);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }, false);
   }
 
 }());
