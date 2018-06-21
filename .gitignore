@@ -2,3 +2,6 @@
 node_modules/
 *.log
 file/
+*.txt
+bk_*.jade
+bk_*.html
