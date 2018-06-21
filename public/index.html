@@ -1,171 +1,27 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- link(rel='icon', href='../../../../favicon.ico')-->
-    <title>さくっとPWA</title>
-    <!-- Bootstrap core CSS-->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
-    <link href="./css/style.css" rel="stylesheet" media="all">
-  </head>
-  <body class="bg-light">
-    <div class="container">
-      <div class="py-5 text-center">
-        <h1>Form Test</h1>
-      </div>
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h3 class="d-flex justify-content-between align-items-center mb-3"><span class="text-muted">Your cart</span><span class="badge badge-secondary badge-pill">3</span></h3>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6><small class="text-muted">Brief description</small>
-              </div><span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6><small class="text-muted">Brief description</small>
-              </div><span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6><small class="text-muted">Brief description</small>
-              </div><span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6><small>EXAMPLECODE</small>
-              </div><span class="text-success">-$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between"><span>Total (USD)</span><strong>$20</strong></li>
-          </ul>
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" placeholder="Promo code" class="form-control">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div id="app" class="col-md-8 order-md-1">
-          <h2 class="mb-3">Form Area</h2>
-          <form>
-            <div class="form-group row">
-              <label for="inputName" class="col-sm-4 col-form-label">Name</label>
-              <div class="col-sm-8">
-                <input id="inputName" type="text" placeholder="name" class="form-control">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputSname" class="col-sm-4 col-form-label">Short Name</label>
-              <div class="col-sm-8">
-                <input id="inputSname" type="text" placeholder="short_name" class="form-control">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputColor" class="col-sm-4 col-form-label">Background Color</label>
-              <div class="col-sm-8">
-                <input id="inputColor" type="text" class="form-control">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputText1" class="col-sm-4 col-form-label">Name</label>
-              <div class="col-sm-8">
-                <input id="inputText1" type="text" v-model="form.name" :class="errorClassObject('name')" placeholder="Input text" class="form-control">
-                <transition name="fade">
-                  <p v-if="!validation.name" class="text-danger mt-2 ml-2">{{ validation.name | emptyValidator }}</p>
-                </transition>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputText2" class="col-sm-4 col-form-label">Short name</label>
-              <div class="col-sm-8">
-                <input id="inputText2" type="text" v-model="form.shortName" :class="errorClassObject('shortName')" placeholder="Input text" class="form-control">
-                <transition name="fade">
-                  <p v-if="!validation.shortName" class="text-danger mt-2 ml-2">{{ validation.shortName | emptyValidator }}</p>
-                </transition>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputText3" class="col-sm-4 col-form-label">Background color</label>
-              <div class="col-sm-8">
-                <input id="inputText3" type="text" v-model="form.backgroundColor" :class="errorClassObject('backgroundColor')" placeholder="Input text" class="form-control">
-                <transition name="fade">
-                  <p v-if="!validation.backgroundColor" class="text-danger mt-2 ml-2">{{ validation.backgroundColor | emptyValidator }}</p>
-                </transition>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputText4" class="col-sm-4 col-form-label">Theme color</label>
-              <div class="col-sm-8">
-                <input id="inputText4" type="text" v-model="form.themeColor" :class="errorClassObject('themeColor')" placeholder="Input text" class="form-control">
-                <transition name="fade">
-                  <p v-if="!validation.themeColor" class="text-danger mt-2 ml-2">{{ validation.themeColor | emptyValidator }}</p>
-                </transition>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
-              <div class="col-sm-8">
-                <input id="inputPassword" type="password" placeholder="Password" class="form-control">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-12 text-right">
-                <button type="button" :disabled="isValid == false" class="btn btn-info">だうんろーど</button>
-              </div>
-            </div>
-          </form>
-          <!-- pre code-->
-          <div class="pre_wrap">
-            <h3>Your original manifest.json</h3>
-            <pre class="code code-json"><label>JSON</label><code>{{ form }}</code></pre>
-            <h3>manifest.json sample</h3>
-            <pre class="code code-json"><label>JSON</label><code>{
-  "name"              : "PWA sample",
-  "short_name"        : "PWA",
-  "description"       : "An example website implementing Progressive Web App technology.",
-  "start_url"         : "/",
-  "display"           : "standalone",
-  "orientation"       : "any",
-  "background_color"  : "#ACE",
-  "theme_color"       : "#ACE",
-  "icons": [
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="author" content=""><!-- link(rel='icon', href='../../../../favicon.ico')--><title>さくっとPWA</title><!-- Bootstrap core CSS--><link href="./css/bootstrap.min.css" rel="stylesheet"><!-- Custom styles for this template--><link href="//fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"><link href="./css/style.css" rel="stylesheet" media="all"></head><body class="bg-light"><div id="loader"><div class="wrapper"><div class="box-wrap"><div class="box one"></div><div class="box two"></div><div class="box three"></div><div class="box four"></div><div class="box five"></div><div class="box six"></div></div></div></div><div class="container"><div class="py-5 text-center"><h1 class="mb-4">さくっとPWA</h1><p>PWAを実施してみたいけど、何をすればいいのかわからない人のために。</p></div><div id="app" class="row"><div class="col-md-8 mb-4"><h2 class="mb-3">Form Area</h2><form v-on:submit.prevent="doSubmit"><div class="progress mb-4"><div role="progressbar" aria-valuemin="0" aria-valuemax="100" :class="isAllValid ? 'bg-success' : 'bg-info'" :style="progressWidth" class="progress-bar progress-bar-striped progress-bar-animated"></div></div><div class="form-group row"><label for="inputText1" class="col-sm-4 col-form-label">Name</label><div class="col-sm-8"><input id="inputText1" type="text" v-model="form.name" :class="errorClassObject('name')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('name')" class="text-danger mt-2 ml-2">{{ validation.name | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText2" class="col-sm-4 col-form-label">Short name</label><div class="col-sm-8"><input id="inputText2" type="text" v-model="form.short_name" :class="errorClassObject('short_name')" placeholder="Input text" class="form-control"><transition name="fade" v-if="activeClassObject('short_name')"><p class="text-danger mt-2 ml-2">{{ validation.short_name | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText3" class="col-sm-4 col-form-label">Description</label><div class="col-sm-8"><input id="inputText3" type="text" v-model="form.description" :class="errorClassObject('description')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('description')" class="text-danger mt-2 ml-2">{{ validation.description | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText4" class="col-sm-4 col-form-label">Start URL</label><div class="col-sm-8"><input id="inputText4" type="text" v-model="form.start_url" :class="errorClassObject('start_url')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('start_url')" class="text-danger mt-2 ml-2">{{ validation.start_url | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText5" class="col-sm-4 col-form-label">Display</label><div class="col-sm-8"><input id="inputText5" type="text" v-model="form.display" :class="errorClassObject('display')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('display')" class="text-danger mt-2 ml-2">{{ validation.display | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText6" class="col-sm-4 col-form-label">Orientation</label><div class="col-sm-8"><input id="inputText6" type="text" v-model="form.orientation" :class="errorClassObject('orientation')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('orientation')" class="text-danger mt-2 ml-2">{{ validation.orientation | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText7" class="col-sm-4 col-form-label">Background Color</label><div class="col-sm-8"><input id="inputText7" type="text" v-model="form.background_color" :class="errorClassObject('background_color')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('background_color')" class="text-danger mt-2 ml-2">{{ validation.background_color | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText8" class="col-sm-4 col-form-label">Theme Color</label><div class="col-sm-8"><input id="inputText8" type="text" v-model="form.theme_color" :class="errorClassObject('theme_color')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('theme_color')" class="text-danger mt-2 ml-2">{{ validation.theme_color | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText9" class="col-sm-4 col-form-label">Application Icon</label><div class="col-sm-8"><input id="inputText9" type="text" v-model="form.icon_home" :class="errorClassObject('icon_home')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('icon_home')" class="text-danger mt-2 ml-2">{{ validation.icon_home | emptyValidator }}</p></transition></div></div><div class="form-group row"><label for="inputText10" class="col-sm-4 col-form-label">Splash Screen Icon</label><div class="col-sm-8"><input id="inputText10" type="text" v-model="form.icon_splash" :class="errorClassObject('icon_splash')" placeholder="Input text" class="form-control"><transition name="fade"><p v-if="activeClassObject('icon_splash')" class="text-danger mt-2 ml-2">{{ validation.icon_splash | emptyValidator }}</p></transition></div></div><button type="submit" :disabled="!isAllValid" class="btn btn-success btn-lg btn-block mt-4">コンプリート!!</button></form></div><div class="col-md-4 mb-4"><h2>Ad Area</h2></div><div id="result" class="col-md-12 mb-4 pt-4"><h2>Result Area</h2><!-- pre code--><div class="pre_wrap row"><div class="col-md-6 mb-2"><h3 class="mb-3">manifest.json</h3><pre class="code code-json mb-5"><label>JSON</label><code> 
+{
+  name: '{{ this.form['name'] }}',
+  short_name: '{{ this.form['short_name'] }}',
+  description: '{{ this.form['description'] }}',
+  start_url: '{{ this.form['start_url'] }}',
+  display: '{{ this.form['display'] }}',
+  orientation: '{{ this.form['orientation'] }}',
+  background_color: '{{ this.form['background_color'] }}',
+  theme_color: '{{ this.form['theme_color'] }}',
+  icons: [
     {
-      "src"           : "/images/logo/logo072.png",
-      "sizes"         : "72x72",
-      "type"          : "image/png"
+      src: '{{ this.form['icon_home'] }}',
+      sizes: '192x192',
+      type: 'image/png'
     },
     {
-      "src"           : "/images/logo/logo152.png",
-      "sizes"         : "152x152",
-      "type"          : "image/png"
-    },
-    {
-      "src"           : "/images/logo/logo192.png",
-      "sizes"         : "192x192",
-      "type"          : "image/png"
-    },
-    {
-      "src"           : "/images/logo/logo256.png",
-      "sizes"         : "256x256",
-      "type"          : "image/png"
-    },
-    {
-      "src"           : "/images/logo/logo512.png",
-      "sizes"         : "512x512",
-      "type"          : "image/png"
+      src: '{{ this.form['icon_splash'] }}',
+      sizes: '512x512',
+      type: 'image/png'
     }
-  ]
-}</code></pre>
-            <h3>service-worker.js sample</h3>
-            <pre class="code code-javascript"><label>JS</label><code>self.addEventListener('install', function(e) {
+  ],
+}</code></pre></div><div class="col-md-6 mb-2"><h3 class="mb-3">service-worker.js</h3><pre class="code code-javascript mb-5"><label>JS</label><code>// comment
+self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
 });
  
@@ -173,74 +29,32 @@ self.addEventListener('activate', function(e) {
   console.log('[ServiceWorker] Activate');
 });
  
-self.addEventListener('fetch', function(event) {});</code></pre>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="mb-3">NEWS</h2>
-          <ul class="news_wrap">
-            <li><a href="#">
-                <div class="date">2018年06月30日</div>
-                <div class="title">オープンしました！</div></a></li>
-            <li><a href="#">
-                <div class="date">2018年07月01日</div>
-                <div class="title">早速修正いたしました。</div></a></li>
-          </ul>
-        </div>
-      </div>
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">© 2018 さくっとPWA</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="//github.com/nishinotky/pwa-converter/">GitHub</a></li>
-          <li class="list-inline-item"><a href="//auto-range.jp">うんえい</a></li>
-        </ul>
-      </footer>
-    </div>
-    <!--
-    Bootstrap core JavaScript
-    ==================================================
-    -->
-    <!-- Placed at the end of the document so the pages load faster-->
-    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/holder.min.js"></script>
-    <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/i18n/jquery.spectrum-ja.min.js"></script>
-    <script>
-      jQuery(function($){
-        $("#inputColor").spectrum({
-          color: "#00ada9",
-          showInput: true,
-          chooseText: "ok!",
-          cancelText: "キャンセル",
-          preferredFormat: "hex",
-        });
+self.addEventListener('fetch', function(event) {});</code></pre></div><div class="col-md-12 mb-4"><h3 class="mb-3">index.html 設定サンプル</h3><pre class="code code-html"><label>HTML</label><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+  &lt;head&gt;
+    &lt;link rel="manifest" href="./manifest.json"&gt;
+    &lt;script&gt;
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js').then(function () { console.log('Service Worker Registered'); });
+      }
+      window.addEventListener('load', function() {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register("./service-worker.js")
+            .then(function(registration) {
+              return registration.pushManager.getSubscription().then(function(subscription) {
+                if (subscription) {
+                  return subscription
+                }
+                return registration.pushManager.subscribe({
+                  userVisibleOnly: true
+                })
+              })
+            }).then(function(subscription) {
+              console.log("pushManager endpoint:", subscription.endpoint)
+            }).catch(function(error) {
+              console.warn("serviceWorker error:", error)
+            })
+        }
       });
-    </script>
-    <script src="./js/vue.min.js"></script>
-    <script src="./js/script.js"></script>
-  </body>
-</html>
+    &lt;/script&gt;</code></pre></div></div></div></div><div class="row pt-4"><div class="col-md-8 order-md-1"><h2 class="mb-3">INFORMATION</h2><ul class="news_wrap mb-4"><li><div class="date">2018年06月22日</div><div class="title">「さくっとPWA」（試験公開版）完成!!</div></li></ul></div></div><footer class="my-5 pt-5 text-muted text-center text-small"><p class="mb-1">© 2018 さくっとPWA</p><ul class="list-inline"><li class="list-inline-item"><a href="//github.com/nishinotky/pwa-converter/">GitHub</a></li><li class="list-inline-item"><a href="//auto-range.jp">かいはつ</a></li></ul></footer></div><!--Bootstrap core JavaScript
+==================================================--><!-- Placed at the end of the document so the pages load faster--><script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script><script src="./js/popper.min.js"></script><script src="./js/bootstrap.min.js"></script><script src="./js/holder.min.js"></script><script src="./js/vue.min.js"></script><script src="./js/script.js"></script></body></html>

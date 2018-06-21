@@ -10,165 +10,187 @@ html(lang='ja')
     // Bootstrap core CSS
     link(href='./css/bootstrap.min.css', rel='stylesheet')
     // Custom styles for this template
-    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css")
-    link(href='./css/style.css', rel='stylesheet' media="all")
+    link(href="//fonts.googleapis.com/css?family=Montserrat", rel="stylesheet")
+    link(href='./css/style.css', rel='stylesheet', media="all")
   body.bg-light
+    #loader
+      .wrapper
+        .box-wrap
+          .box.one
+          .box.two
+          .box.three
+          .box.four
+          .box.five
+          .box.six
+
     .container
       .py-5.text-center
-        h1 Form Test
-      .row
-        .col-md-4.order-md-2.mb-4
-          h3.d-flex.justify-content-between.align-items-center.mb-3
-            span.text-muted Your cart
-            span.badge.badge-secondary.badge-pill 3
-          ul.list-group.mb-3
-            li.list-group-item.d-flex.justify-content-between.lh-condensed
-              div
-                h6.my-0 Product name
-                small.text-muted Brief description
-              span.text-muted $12
-            li.list-group-item.d-flex.justify-content-between.lh-condensed
-              div
-                h6.my-0 Second product
-                small.text-muted Brief description
-              span.text-muted $8
-            li.list-group-item.d-flex.justify-content-between.lh-condensed
-              div
-                h6.my-0 Third item
-                small.text-muted Brief description
-              span.text-muted $5
-            li.list-group-item.d-flex.justify-content-between.bg-light
-              .text-success
-                h6.my-0 Promo code
-                small EXAMPLECODE
-              span.text-success -$5
-            li.list-group-item.d-flex.justify-content-between
-              span Total (USD)
-              strong $20
-          form.card.p-2
-            .input-group
-              input.form-control(type='text', placeholder='Promo code')
-              .input-group-append
-                button.btn.btn-secondary(type='submit') Redeem
-        #app.col-md-8.order-md-1
+        h1.mb-4 さくっとPWA
+        p PWAを実施してみたいけど、何をすればいいのかわからない人のために。
+      #app.row
+        .col-md-8.mb-4
           h2.mb-3 Form Area
-          form
-            .form-group.row
-              label.col-sm-4.col-form-label(for='inputName') Name
-              .col-sm-8
-                input#inputName.form-control(type='text', placeholder='name')
-            .form-group.row
-              label.col-sm-4.col-form-label(for='inputSname') Short Name
-              .col-sm-8
-                input#inputSname.form-control(type='text', placeholder='short_name')
-            .form-group.row
-              label.col-sm-4.col-form-label(for='inputColor') Background Color
-              .col-sm-8
-                input#inputColor.form-control(type='text')
+          form(v-on:submit.prevent="doSubmit")
+            .progress.mb-4
+              .progress-bar.progress-bar-striped.progress-bar-animated(role="progressbar", aria-valuemin="0", aria-valuemax="100", :class="isAllValid ? 'bg-success' : 'bg-info'", :style="progressWidth")
             .form-group.row
               label.col-sm-4.col-form-label(for='inputText1') Name
               .col-sm-8
                 input#inputText1.form-control(type='text', v-model='form.name', :class='errorClassObject(\'name\')', placeholder='Input text')
                 transition(name='fade')
-                  p.text-danger.mt-2.ml-2(v-if='!validation.name') {{ validation.name | emptyValidator }}
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'name\')') {{ validation.name | emptyValidator }}
             .form-group.row
               label.col-sm-4.col-form-label(for='inputText2') Short name
               .col-sm-8
-                input#inputText2.form-control(type='text', v-model='form.shortName', :class='errorClassObject(\'shortName\')', placeholder='Input text')
-                transition(name='fade')
-                  p.text-danger.mt-2.ml-2(v-if='!validation.shortName') {{ validation.shortName | emptyValidator }}
+                input#inputText2.form-control(type='text', v-model='form.short_name', :class='errorClassObject(\'short_name\')', placeholder='Input text')
+                transition(name='fade', v-if='activeClassObject(\'short_name\')')
+                  p.text-danger.mt-2.ml-2 {{ validation.short_name | emptyValidator }}
             .form-group.row
-              label.col-sm-4.col-form-label(for='inputText3') Background color
+              label.col-sm-4.col-form-label(for='inputText3') Description
               .col-sm-8
-                input#inputText3.form-control(type='text', v-model='form.backgroundColor', :class='errorClassObject(\'backgroundColor\')', placeholder='Input text')
+                input#inputText3.form-control(type='text', v-model='form.description', :class='errorClassObject(\'description\')', placeholder='Input text')
                 transition(name='fade')
-                  p.text-danger.mt-2.ml-2(v-if='!validation.backgroundColor') {{ validation.backgroundColor | emptyValidator }}
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'description\')') {{ validation.description | emptyValidator }}
             .form-group.row
-              label.col-sm-4.col-form-label(for='inputText4') Theme color
+              label.col-sm-4.col-form-label(for='inputText4') Start URL
               .col-sm-8
-                input#inputText4.form-control(type='text', v-model='form.themeColor', :class='errorClassObject(\'themeColor\')', placeholder='Input text')
+                input#inputText4.form-control(type='text', v-model='form.start_url', :class='errorClassObject(\'start_url\')', placeholder='Input text')
                 transition(name='fade')
-                  p.text-danger.mt-2.ml-2(v-if='!validation.themeColor') {{ validation.themeColor | emptyValidator }}
-            .form-group.row
-              label.col-sm-4.col-form-label(for='inputPassword') Password
-              .col-sm-8
-                input#inputPassword.form-control(type='password', placeholder='Password')
-            .form-group.row
-              .col-sm-12.text-right
-                button.btn.btn-info(type='button', :disabled='isValid == false') だうんろーど
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'start_url\')') {{ validation.start_url | emptyValidator }}
 
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputText5') Display
+              .col-sm-8
+                input#inputText5.form-control(type='text', v-model='form.display', :class='errorClassObject(\'display\')', placeholder='Input text')
+                transition(name='fade')
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'display\')') {{ validation.display | emptyValidator }}
+
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputText6') Orientation
+              .col-sm-8
+                input#inputText6.form-control(type='text', v-model='form.orientation', :class='errorClassObject(\'orientation\')', placeholder='Input text')
+                transition(name='fade')
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'orientation\')') {{ validation.orientation | emptyValidator }}
+
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputText7') Background Color
+              .col-sm-8
+                input#inputText7.form-control(type='text', v-model='form.background_color', :class='errorClassObject(\'background_color\')', placeholder='Input text')
+                transition(name='fade')
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'background_color\')') {{ validation.background_color | emptyValidator }}
+
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputText8') Theme Color
+              .col-sm-8
+                input#inputText8.form-control(type='text', v-model='form.theme_color', :class='errorClassObject(\'theme_color\')', placeholder='Input text')
+                transition(name='fade')
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'theme_color\')') {{ validation.theme_color | emptyValidator }}
+
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputText9') Application Icon
+              .col-sm-8
+                input#inputText9.form-control(type='text', v-model='form.icon_home', :class='errorClassObject(\'icon_home\')', placeholder='Input text')
+                transition(name='fade')
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'icon_home\')') {{ validation.icon_home | emptyValidator }}
+            
+            .form-group.row
+              label.col-sm-4.col-form-label(for='inputText10') Splash Screen Icon
+              .col-sm-8
+                input#inputText10.form-control(type='text', v-model='form.icon_splash', :class='errorClassObject(\'icon_splash\')', placeholder='Input text')
+                transition(name='fade')
+                  p.text-danger.mt-2.ml-2(v-if='activeClassObject(\'icon_splash\')') {{ validation.icon_splash | emptyValidator }}
+
+            button(type="submit", class="btn btn-success btn-lg btn-block mt-4", :disabled="!isAllValid") コンプリート!!
+
+        .col-md-4.mb-4
+          h2 Ad Area
+
+        #result.col-md-12.mb-4.pt-4
+          h2 Result Area
           // pre code
-          .pre_wrap
-            h3 Your original manifest.json
-            pre.code.code-json <label>JSON</label>
-              code
-                {{ form }}
-                
-            h3 manifest.json sample
-            pre.code.code-json <label>JSON</label>
-              code
-                | {
-                |   "name"              : "PWA sample",
-                |   "short_name"        : "PWA",
-                |   "description"       : "An example website implementing Progressive Web App technology.",
-                |   "start_url"         : "/",
-                |   "display"           : "standalone",
-                |   "orientation"       : "any",
-                |   "background_color"  : "#ACE",
-                |   "theme_color"       : "#ACE",
-                |   "icons": [
-                |     {
-                |       "src"           : "/images/logo/logo072.png",
-                |       "sizes"         : "72x72",
-                |       "type"          : "image/png"
-                |     },
-                |     {
-                |       "src"           : "/images/logo/logo152.png",
-                |       "sizes"         : "152x152",
-                |       "type"          : "image/png"
-                |     },
-                |     {
-                |       "src"           : "/images/logo/logo192.png",
-                |       "sizes"         : "192x192",
-                |       "type"          : "image/png"
-                |     },
-                |     {
-                |       "src"           : "/images/logo/logo256.png",
-                |       "sizes"         : "256x256",
-                |       "type"          : "image/png"
-                |     },
-                |     {
-                |       "src"           : "/images/logo/logo512.png",
-                |       "sizes"         : "512x512",
-                |       "type"          : "image/png"
-                |     }
-                |   ]
-                | }
-            h3 service-worker.js sample
-            pre.code.code-javascript <label>JS</label>
-              code
-                | self.addEventListener('install', function(e) {
-                |   console.log('[ServiceWorker] Install');
-                | });
-                | 
-                | self.addEventListener('activate', function(e) {
-                |   console.log('[ServiceWorker] Activate');
-                | });
-                | 
-                | self.addEventListener('fetch', function(event) {});
+          .pre_wrap.row
+            .col-md-6.mb-2
+              h3.mb-3 manifest.json
+              pre.code.code-json.mb-5 <label>JSON</label>
+                code 
+                  | {
+                  |   name: '{{ this.form['name'] }}',
+                  |   short_name: '{{ this.form['short_name'] }}',
+                  |   description: '{{ this.form['description'] }}',
+                  |   start_url: '{{ this.form['start_url'] }}',
+                  |   display: '{{ this.form['display'] }}',
+                  |   orientation: '{{ this.form['orientation'] }}',
+                  |   background_color: '{{ this.form['background_color'] }}',
+                  |   theme_color: '{{ this.form['theme_color'] }}',
+                  |   icons: [
+                  |     {
+                  |       src: '{{ this.form['icon_home'] }}',
+                  |       sizes: '192x192',
+                  |       type: 'image/png'
+                  |     },
+                  |     {
+                  |       src: '{{ this.form['icon_splash'] }}',
+                  |       sizes: '512x512',
+                  |       type: 'image/png'
+                  |     }
+                  |   ],
+                  | }
 
-      .row
-        .col-md-12
-          h2.mb-3 NEWS
-          ul.news_wrap
+            .col-md-6.mb-2
+              h3.mb-3 service-worker.js
+              pre.code.code-javascript.mb-5 <label>JS</label>
+                code
+                  | // comment
+                  | self.addEventListener('install', function(e) {
+                  |   console.log('[ServiceWorker] Install');
+                  | });
+                  | 
+                  | self.addEventListener('activate', function(e) {
+                  |   console.log('[ServiceWorker] Activate');
+                  | });
+                  | 
+                  | self.addEventListener('fetch', function(event) {});
+
+            .col-md-12.mb-4
+              h3.mb-3 index.html 設定サンプル
+              pre.code.code-html <label>HTML</label>
+                code
+                  | &lt;!DOCTYPE html&gt;
+                  | &lt;html lang="ja"&gt;
+                  |   &lt;head&gt;
+                  |     &lt;link rel="manifest" href="./manifest.json"&gt;
+                  |     &lt;script&gt;
+                  |       if ('serviceWorker' in navigator) {
+                  |         navigator.serviceWorker.register('./service-worker.js').then(function () { console.log('Service Worker Registered'); });
+                  |       }
+                  |       window.addEventListener('load', function() {
+                  |         if ('serviceWorker' in navigator) {
+                  |           navigator.serviceWorker.register("./service-worker.js")
+                  |             .then(function(registration) {
+                  |               return registration.pushManager.getSubscription().then(function(subscription) {
+                  |                 if (subscription) {
+                  |                   return subscription
+                  |                 }
+                  |                 return registration.pushManager.subscribe({
+                  |                   userVisibleOnly: true
+                  |                 })
+                  |               })
+                  |             }).then(function(subscription) {
+                  |               console.log("pushManager endpoint:", subscription.endpoint)
+                  |             }).catch(function(error) {
+                  |               console.warn("serviceWorker error:", error)
+                  |             })
+                  |         }
+                  |       });
+                  |     &lt;/script&gt;
+
+      .row.pt-4
+        .col-md-8.order-md-1
+          h2.mb-3 INFORMATION
+          ul.news_wrap.mb-4
             li
-              a(href="#")
-                .date 2018年06月30日
-                .title オープンしました！
-            li
-              a(href="#")
-                .date 2018年07月01日
-                .title 早速修正いたしました。
+              .date 2018年06月22日
+              .title 「さくっとPWA」（試験公開版）完成!!
 
       footer.my-5.pt-5.text-muted.text-center.text-small
         p.mb-1 © 2018 さくっとPWA
@@ -176,7 +198,7 @@ html(lang='ja')
           li.list-inline-item
             a(href="//github.com/nishinotky/pwa-converter/") GitHub
           li.list-inline-item
-            a(href='//auto-range.jp') うんえい
+            a(href='//auto-range.jp') かいはつ
     //
       Bootstrap core JavaScript
       ==================================================
@@ -185,36 +207,5 @@ html(lang='ja')
     script(src='./js/popper.min.js')
     script(src='./js/bootstrap.min.js')
     script(src='./js/holder.min.js')
-    script.
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    script(src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js")
-    script(src="//cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/i18n/jquery.spectrum-ja.min.js")
-    script.
-      jQuery(function($){
-        $("#inputColor").spectrum({
-          color: "#00ada9",
-          showInput: true,
-          chooseText: "ok!",
-          cancelText: "キャンセル",
-          preferredFormat: "hex",
-        });
-      });
     script(src="./js/vue.min.js")
     script(src="./js/script.js")
