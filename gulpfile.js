@@ -5,6 +5,7 @@ var jade = require('gulp-jade');
 gulp.task('sass', function() {
   return gulp.src('./sass/**/*.scss')
     .pipe(sass({outputStyle: 'expanded'}))
+    // .pipe(sass({outputStyle: 'compressed'}))
     .pipe(gulp.dest('./public/css'));
 });
 
@@ -16,6 +17,7 @@ gulp.task('jade', function() {
   return gulp.src('./jade/**/*.jade')
     .pipe(jade({
       pretty: true
+      // pretty: false
     }))
     .pipe(gulp.dest('./public/'));
 });
